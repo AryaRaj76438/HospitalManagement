@@ -3,6 +3,7 @@ package com.quantumsyntax.service;
 import com.quantumsyntax.dto.PatientResponse;
 import com.quantumsyntax.model.Insurance;
 import com.quantumsyntax.model.Patient;
+import com.quantumsyntax.repository.InsuranceRepository;
 import com.quantumsyntax.repository.PatientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class InsuranceService {
-    private final InsuranceService insuranceService;
     private final PatientRepository patientRepository;
-    private ModelMapper modelMapper;
+    private final InsuranceRepository insuranceRepository;
 
     @Transactional
     public Patient assignInsuranceToPatient(Insurance insurance, Long patientId){

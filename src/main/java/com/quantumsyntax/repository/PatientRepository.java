@@ -29,10 +29,16 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Query("select p from Patient p where p.birthDate > :birthDate")
     List<Patient> findByBornAfterDate(@Param("birthDate") LocalDate birthDate);
 
-    @Query("select new com.codingshuttle.youtube.hospitalManagement.dto.BloodGroupCountResponseEntity(p.bloodGroup," +
-            " Count(p)) from Patient p group by p.bloodGroup")
-//    List<Object[]> countEachBloodGroupType();
+    @Query("""
+    select new com.quantumsyntax.dto.BloodGroupCountResponse(
+        p.bloodGroup,
+        count(p)
+    )
+    from Patient p
+    group by p.bloodGroup
+""")
     List<BloodGroupCountResponse> countEachBloodGroupType();
+
 
     @Query(value = "select * from patient", nativeQuery = true)
     Page<Patient> findAllPatients(Pageable pageable);

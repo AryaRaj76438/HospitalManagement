@@ -15,5 +15,4 @@ public class HospitalManagementApplication {
 		System.setProperty("PGPASSWORD", dotenv.get("PGPASSWORD"));
 		SpringApplication.run(HospitalManagementApplication.class, args);
 	}
-
 }
